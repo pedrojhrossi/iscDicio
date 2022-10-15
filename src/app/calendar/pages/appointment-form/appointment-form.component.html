@@ -1,0 +1,277 @@
+<form [formGroup]="calendarForm" >
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header bg-success" id="headingOne">
+        <h5 class="mb-0">
+          <button
+            class="btn text-white"
+            data-toggle="collapse"
+            data-target="#branchPanel"
+            aria-expanded="true"
+            aria-controls="branchPanel"
+          >
+            Seleccione Oficina
+          </button>
+        </h5>
+      </div>
+
+      <div
+        id="branchPanel"
+        class="collapse show"
+        aria-labelledby="headingOne"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <!-- Branch -->
+          <ul class="list-group">
+            <li
+              *ngFor="let branch of oficinas; let i = index"
+              class="list-group-item"
+            >
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="branch"
+                  [value]="branch.publicId"
+                  id="branch_{{ i }}"
+                />
+                <label class="form-check-label" for="branch_{{ i }}">
+                  {{ branch.name }}
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-success" id="headingTwo">
+        <h5 class="mb-0">
+          <button
+            class="btn text-white collapsed"
+            data-toggle="collapse"
+            data-target="#servicePanel"
+            aria-expanded="false"
+            aria-controls="servicePanel"
+          >
+            Seleccionar Servicio
+          </button>
+        </h5>
+      </div>
+      <div
+        id="servicePanel"
+        class="collapse"
+        aria-labelledby="headingTwo"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <!-- Service -->
+          <ul class="list-group">
+            <li
+              *ngFor="let service of servicios; let i = index"
+              class="list-group-item"
+            >
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="service"
+                  [value]="service.publicId"
+                  id="service_{{ i }}"
+                />
+                <label class="form-check-label" for="service_{{ i }}">
+                  {{ service.name }}
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-success" id="headingThree">
+        <h5 class="mb-0">
+          <button
+            class="btn text-white collapsed"
+            data-toggle="collapse"
+            data-target="#dateTimePanel"
+            aria-expanded="false"
+            aria-controls="dateTimePanel"
+          >
+            Seleccionar Fecha y Hora
+          </button>
+        </h5>
+      </div>
+      <div
+        id="dateTimePanel"
+        class="collapse"
+        aria-labelledby="headingThree"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <!-- Date and Time -->
+          <div class="row mb-3">
+            <div class="col">
+              <input
+                class="form-control"
+                type="date"
+                formControlName="date"
+                min="{{ fechas[0] | date: 'yyyy-MM-dd' }}"
+                max="{{ fechas[fechas.length - 1] | date: 'yyyy-MM-dd' }}"
+                [value]="fechas[0] | date: 'yyyy-MM-dd'"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <span class="" *ngFor="let hora of horas; let i = index">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="time_{{ i }}"
+                  autocomplete="off"
+                  [value]="hora"
+                  formControlName="time"
+                />
+                <label
+                  class="btn btn-outline-success me-2 mt-2"
+                  for="time_{{ i }}"
+                  >{{ hora }}</label
+                >
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-success" id="headingFour">
+        <h5 class="mb-0">
+          <button
+            class="btn text-white collapsed"
+            data-toggle="collapse"
+            data-target="#userPanel"
+            aria-expanded="false"
+            aria-controls="userPanel"
+          >
+            Detalles de Contacto
+          </button>
+        </h5>
+      </div>
+      <div
+        id="userPanel"
+        class="collapse"
+        aria-labelledby="headingFour"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <!-- Usuario -->
+          <div id="usuarioForm" class="mb-3">
+            <div class="row mb-3">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  formControlName="firstname"
+                  [value]="cliente.firstName"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="apellido"
+                  formControlName="lastname"
+                  [value]="cliente.lastName"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  [value]="cliente.email"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telefono"
+                  formControlName="phone"
+                  [value]="cliente.phone"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="idDocument" class="form-label">RFC</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="idDocument"
+                  formControlName="externalId"
+                  [value]="cliente.externalId"
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >Notas</label
+              >
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                formControlName="notes"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="terms"
+                  formControlName="terminosCondiciones"
+                />
+                <label class="form-check-label" for="terms"
+                  >Acepto términos y condiciones</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <button
+                type="submit"
+                class="btn btn-success float-end"
+                (click)="crearCita()"
+                [disabled]="calendarForm.invalid"
+              >
+                Generar Cita
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usuario -->
+</form>
+
+<!-- <h3>Formulario</h3>
+<pre>Valid: {{ calendarForm.valid }}</pre>
+
+<h5>Value</h5>
+<pre>{{ calendarForm.value | json }}</pre>
+
+<h5>Cliente</h5>
+<pre>{{ cliente | json }}</pre> -->
