@@ -64,12 +64,12 @@ export class AppointmentFormComponent implements OnInit {
       .getUserByExternalId(this.calendarService.cliente.externalId || '')
       .subscribe((resp) => {
         this.cliente = resp?.customerList[0] || {
-          firstName: '',
-          lastName: '',
-          email: '',
+          firstName: this.calendarService.cliente.firstName,
+          lastName: this.calendarService.cliente.lastName,
+          email: this.calendarService.cliente.email,
           phone: '',
-          externalId: '',
-          publicId: '',
+          externalId: this.calendarService.cliente.externalId,
+          publicId: null,
         };
 
         this.calendarForm.get('firstname')?.setValue(this.cliente.firstName);
