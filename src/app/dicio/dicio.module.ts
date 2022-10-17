@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DicioRoutingModule } from './dicio-routing.module';
-import { DicioButtonModule } from '@dicio/pivot-angular';
+// import { DicioButtonModule } from '@dicio/pivot-angular';
 import { HomeComponent } from './pages/home/home.component';
 
 
@@ -13,7 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
   imports: [
     CommonModule,
     DicioRoutingModule,
-    DicioButtonModule
+    // DicioButtonModule
   ]
 })
 export class DicioModule { }
