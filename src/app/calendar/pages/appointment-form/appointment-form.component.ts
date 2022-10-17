@@ -45,9 +45,6 @@ export class AppointmentFormComponent implements OnInit {
     externalId: '',
     publicId: null,
   };
-  dicioUser: Customer = {
-    email: 'phernandez@isc-bunkerramo.com',
-  };
 
   constructor(
     private fb: FormBuilder,
@@ -56,8 +53,15 @@ export class AppointmentFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (
+      !this.calendarService.cliente.externalId ||
+      this.calendarService.cliente.externalId === ''
+    ) {
+      this.router.navigate(['/dicioHome/home']);
+      return;
+    }
     this.calendarService
-      .getUserByEmail(this.dicioUser.email || '')
+      .getUserByExternalId(this.calendarService.cliente.externalId || '')
       .subscribe((resp) => {
         this.cliente = resp?.customerList[0] || {
           firstName: '',
@@ -178,7 +182,6 @@ export class AppointmentFormComponent implements OnInit {
             .confirmAppoinment(reserva.publicId, cuerpoConfirmacion)
             .subscribe((citaCreada) => {
               if (citaCreada) {
-                alert('CITA CREADA CON EXITO ' + citaCreada?.publicId);
                 this.calendarForm.reset();
                 this.router.navigate([
                   '/iscCalendar/confirmacion',

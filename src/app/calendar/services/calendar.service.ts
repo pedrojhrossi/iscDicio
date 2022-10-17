@@ -13,6 +13,7 @@ import { CustomerList } from '../interfaces/customerList.interface';
 import { ReservationInfo } from '../interfaces/reservationInfo.interface';
 import { ConfirmationBody } from '../interfaces/confirmationBody.interface';
 import { ConfirmationAppointment, ConfirmationCustomer } from '../interfaces/confirmation.interface';
+import { Customer } from '../interfaces/isc-appointment.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,27 @@ export class CalendarService {
   };
 
   constructor(private http: HttpClient) {}
+
+  private _cliente: Customer = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    externalId: '',
+    publicId: null,
+  };
+
+
+  public get cliente() : Customer {
+    return this._cliente
+  }
+
+
+  public set cliente(newClient : Customer) {
+    this._cliente = newClient;
+  }
+
+
 
   private _branchPublicId: string = '';
   private _branchId: string = '';
@@ -86,8 +108,8 @@ export class CalendarService {
     return this.http.get<QwbConfig>(url, this.headerOptions);
   }
 
-  getUserByEmail(email: string): Observable<CustomerList | null> {
-    const url: string = `${this._baseUrl}/customers/search?email=${email}`;
+  getUserByExternalId(externalId: string): Observable<CustomerList | null> {
+    const url: string = `${this._baseUrl}/customers/search?externalId=${externalId}`;
     return this.http.get<CustomerList | null>(url, this.headerOptions);
   }
 
