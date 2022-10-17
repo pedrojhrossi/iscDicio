@@ -180,7 +180,10 @@ export class AppointmentFormComponent implements OnInit {
               if (citaCreada) {
                 alert('CITA CREADA CON EXITO ' + citaCreada?.publicId);
                 this.calendarForm.reset();
-                this.router.navigate(['/confirmacion']);
+                this.router.navigate([
+                  '/iscCalendar/confirmacion',
+                  citaCreada?.publicId,
+                ]);
               } else {
                 alert('OCURRIO UN ERROR AL INTENTAR GENERAR LA CITA');
               }

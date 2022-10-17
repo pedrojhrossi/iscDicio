@@ -4,5 +4,5 @@
 }
 
 .h-100 {
-  height: 400px !important;
+  min-height: 400px !important;
 }

@@ -1,9 +1,68 @@
-<div class="card h-100 text-center">
-  <div class="card-body row align-items-center">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="card-title fw-bolder">CITA CREADA CON ÉXITO</h1>
+<div class="card text-center mb-3">
+  <div class="card-header bg-success">
+    <h3 class="card-title text-white">CITA CREADA CON ÉXITO</h3>
+  </div>
+  <div class="card-body row align-items-center text-start">
+    <div class="row justify-content-center">
+      <p class="col-md-4 col-6">Número de cita:</p>
+      <p class="col-md-4 col-6">{{ confirmationInfo.appointmentId }}</p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="col-md-4 col-6">Cliente:</p>
+      <p class="col-md-4 col-6">
+        {{ confirmationInfo.customerNombreCompleto }}
+      </p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="col-md-4 col-6">Servicio:</p>
+      <p class="col-md-4 col-6">{{ confirmationInfo.serviceName }}</p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="col-md-4 col-6">Oficina:</p>
+      <p class="col-md-4 col-6">{{ confirmationInfo.oficina }}</p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="col-md-4 col-6">Fecha y Hora:</p>
+      <p class="col-md-4 col-6">{{ confirmationInfo.fechaHora }}</p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="col-md-4 col-6">Correo:</p>
+      <p class="col-md-4 col-6">{{ confirmationInfo.customerEmail }}</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-12">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-header"><h4>Oficina Demo</h4></div>
+          <div class="card-body">
+            <h5 class="card-title">Dirección</h5>
+            <div class="card-text">
+              <p>
+                {{ confirmationInfo.ciudad }}
+              </p>
+              <p>
+                {{ confirmationInfo.direccion }}
+              </p>
+              <p>
+                {{ confirmationInfo.zipCode }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <div class="card-footer">
+    <div class="row justify-content-center">
+      <button
+        type="button"
+        routerLink="/dicioHome/home"
+        class="col-md-3 col-10 btn btn-success btn-block"
+      >
+        Volver al Inicio
+      </button>
+    </div>
+  </div>
 </div>
+
+<!-- <h1>ConfirmationInfo</h1>
+<pre>{{ confirmationInfo | json }}</pre> -->

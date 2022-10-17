@@ -2,17 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppointmentFormComponent } from './pages/appointment-form/appointment-form.component';
 import { AlreadyClientComponent } from './pages/already-client/already-client.component';
-import { HomeScreenComponent } from './pages/home-screen/home-screen.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { HomeComponent } from '../dicio/pages/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      {
-        path: 'homeScreen',
-        component: HomeScreenComponent,
-      },
       {
         path: 'client',
         component: AlreadyClientComponent,
@@ -22,12 +18,8 @@ const routes: Routes = [
         component: AppointmentFormComponent,
       },
       {
-        path: 'confirmacion',
+        path: 'confirmacion/:publicId',
         component: ConfirmationComponent,
-      },
-      {
-        path: '**',
-        redirectTo: 'homeScreen',
       },
     ],
   },
@@ -35,6 +27,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CalendarRoutingModule { }
+export class CalendarRoutingModule {}

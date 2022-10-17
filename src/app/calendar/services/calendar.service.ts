@@ -12,6 +12,7 @@ import {
 import { CustomerList } from '../interfaces/customerList.interface';
 import { ReservationInfo } from '../interfaces/reservationInfo.interface';
 import { ConfirmationBody } from '../interfaces/confirmationBody.interface';
+import { ConfirmationAppointment, ConfirmationCustomer } from '../interfaces/confirmation.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -101,5 +102,18 @@ export class CalendarService {
   ): Observable<AppointmentList | null> {
     const url: string = `${this._baseUrlPublic2}/branches/appointments/${appointmentPublicId}/confirm/`;
     return this.http.post<AppointmentList | null>(url, body);
+  }
+
+  getAppointmentByPublicId(publicId: string): Observable<ConfirmationAppointment>{
+    const url: string = `${this._baseUrl}/appointments/publicid/${publicId}`
+    return this.http.get<ConfirmationAppointment>(url, this.headerOptions);
+  }
+
+  getCustomerById(id?: number): Observable<ConfirmationCustomer | null>{
+    if(!id) {
+      return of(null)
+    }
+    const url: string = `${this._baseUrl}/appointments/customer/${id}/appointments/`
+    return this.http.get<ConfirmationCustomer>(url, this.headerOptions);
   }
 }

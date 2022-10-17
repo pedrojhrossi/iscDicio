@@ -8,23 +8,23 @@ export interface AppointmentList {
 
   id?:                number;
   qpId?:              number;
-  notes:             string;
-  resource:          Resource;
-  created:           number;
-  custom:            string;
-  start:             string;
-  numberOfCustomers: number;
-  services:          Service[];
-  title:             string;
-  branch:            Branch;
-  allDay:            boolean;
-  blocking:          boolean;
-  end:               string;
-  customSlotLength:  number;
-  customers:         Customer[];
-  updated:           number;
-  publicId:          string;
-  status:            number;
+  notes?:             string;
+  resource?:          Resource;
+  created?:           number;
+  custom?:            string;
+  start?:             string;
+  numberOfCustomers?: number;
+  services:          Service[] | [];
+  title?:             string;
+  branch?:            Branch;
+  allDay?:            boolean;
+  blocking?:          boolean;
+  end?:               string;
+  customSlotLength?:  number;
+  customers:         Customer[] | [];
+  updated?:           number;
+  publicId?:          string;
+  status?:            number;
 }
 
 export interface Branch {
