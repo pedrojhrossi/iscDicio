@@ -53,13 +53,13 @@ export class AppointmentFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (
-      !this.calendarService.cliente.externalId ||
-      this.calendarService.cliente.externalId === ''
-    ) {
-      this.router.navigate(['/dicioHome/home']);
-      return;
-    }
+    // if (
+    //   !this.calendarService.cliente.externalId ||
+    //   this.calendarService.cliente.externalId === ''
+    // ) {
+    //   this.router.navigate(['/dicioHome/home']);
+    //   return;
+    // }
     this.calendarService
       .getUserByExternalId(this.calendarService.cliente.externalId || '')
       .subscribe((resp) => {
@@ -91,6 +91,7 @@ export class AppointmentFormComponent implements OnInit {
         if (
           element.publicId ===
           'cc58438df345a7ac05cb5598b1557020ffe89a0b757f0f29c74f2b86e3e022b6'
+          // '0cef7a58d6eb14db8d029e76e277e154cebd58926222a9b9ce9bc428ef064ba7'
         ) {
           nuevoArray.push(element);
         }
@@ -170,7 +171,7 @@ export class AppointmentFormComponent implements OnInit {
     };
 
     let cuerpoConfirmacion: ConfirmationBody = {
-      notes: '',
+      notes: appointmenInfo.notes,
       customers: [this.cliente],
     };
 
@@ -182,11 +183,14 @@ export class AppointmentFormComponent implements OnInit {
             .confirmAppoinment(reserva.publicId, cuerpoConfirmacion)
             .subscribe((citaCreada) => {
               if (citaCreada) {
-                this.calendarForm.reset();
-                this.router.navigate([
-                  '/iscCalendar/confirmacion',
-                  citaCreada?.publicId,
-                ]);
+                setTimeout(() => {
+                  this.router.navigate([
+                    '/iscCalendar/confirmacion',
+                    citaCreada?.publicId,
+                  ]);
+                // this.calendarForm.reset();
+                }, 1000);
+
               } else {
                 alert('OCURRIO UN ERROR AL INTENTAR GENERAR LA CITA');
               }

@@ -42,16 +42,26 @@ export class HomeComponent implements OnInit {
 
     switch (status.step) {
       case 'captura_id_ocr': {
-        this.cliente.firstName = status.data.ObjectocrFront.nombres;
+        this.cliente.firstName = status.data.ocrFront.nombres;
         this.cliente.lastName =
-          status.data.ObjectocrFront.apellidoMaterno +
+          status.data.ocrFront.apellidoMaterno +
           ' ' +
-          status.data.ObjectocrFront.apellidoMaterno;
-        this.cliente.externalId = status.data.ObjectocrFront.curp;
+          status.data.ocrFront.apellidoMaterno;
+        this.cliente.externalId = status.data.ocrFront.curp;
+        break;
+      }
+      case 'datos_personales_ocr': {
+        this.cliente.name = status.data.infoPersonal[0].value;
+        this.cliente.externalId = status.data.infoPersonal[2].value;
         break;
       }
       case 'email_check': {
         this.cliente.email = status.data.email;
+        break;
+      }
+      case 'completed': {
+        this.calendarService.cliente = this.cliente;
+        this.router.navigate(['/iscCalendar/calendar']);
         break;
       }
       default: {
@@ -63,8 +73,8 @@ export class HomeComponent implements OnInit {
     console.log('integrador error -> ', error);
   }
   finish(data: any): void {
+    console.log('integrador data -> ', data);
     this.calendarService.cliente = this.cliente;
     this.router.navigate(['/iscCalendar/calendar']);
-    console.log('integrador data -> ', data);
   }
 }
