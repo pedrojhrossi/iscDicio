@@ -22,35 +22,20 @@ import { Customer } from '../interfaces/isc-appointment.interface';
   providedIn: 'root',
 })
 export class CalendarService {
-  // private _baseUrlPublic: string =
-  //   'https://orchestramx.prismatechcorp.com/calendar-backend/public/api/v1';
-
-  // private _baseUrlPublic2: string =
-  //   'https://orchestramx.prismatechcorp.com/calendar-backend/public/api/v2';
-
-  // private _baseUrl: string =
-  //   'https://orchestramx.prismatechcorp.com/calendar-backend/api/v1';
-
-  // private _configUrl: string =
-  //   'https://orchestramx.prismatechcorp.com/qsystem/rest/entrypoint/variables/qw_general';
-
-  // private _username: string = 'qmaticsoporte';
-  // private _password: string = 'AB*1234ab';
-
   private _baseUrlPublic: string =
-    'http://localhost:8080/calendar-backend/public/api/v1';
+    'https://orchestramx.prismatechcorp.com/calendar-backend/public/api/v1';
 
   private _baseUrlPublic2: string =
-    'http://localhost:8080/calendar-backend/public/api/v2';
+    'https://orchestramx.prismatechcorp.com/calendar-backend/public/api/v2';
 
   private _baseUrl: string =
-    'http://localhost:8080/calendar-backend/api/v1';
+    'https://orchestramx.prismatechcorp.com/calendar-backend/api/v1';
 
   private _configUrl: string =
-    'http://localhost:8080/qsystem/rest/entrypoint/variables/qw_general';
+    'https://orchestramx.prismatechcorp.com/qsystem/rest/entrypoint/variables/qw_general';
 
-  private _username: string = 'superadmin';
-  private _password: string = '2022.Ulan';
+  private _username: string = 'qmaticsoporte';
+  private _password: string = 'AB*1234ab';
 
   private _authorizationData =
     'Basic ' + btoa(this._username + ':' + this._password);
