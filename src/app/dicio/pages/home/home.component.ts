@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       case 'captura_id_ocr': {
         this.cliente.firstName = status.data.ocrFront.nombres;
         this.cliente.lastName =
-          status.data.ocrFront.apellidoMaterno +
+          status.data.ocrFront.apellidoPaterno +
           ' ' +
           status.data.ocrFront.apellidoMaterno;
         this.cliente.externalId = status.data.ocrFront.curp;

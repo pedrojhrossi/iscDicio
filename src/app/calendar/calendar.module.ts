@@ -6,13 +6,15 @@ import { AppointmentFormComponent } from './pages/appointment-form/appointment-f
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlreadyClientComponent } from './pages/already-client/already-client.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { ServicesComponent } from './pages/services/services.component';
 
 
 @NgModule({
   declarations: [
     AppointmentFormComponent,
     AlreadyClientComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ServicesComponent
   ],
   imports: [
     CommonModule,

@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'dicioHome',
+    redirectTo: 'iscCalendar',
   },
 ];
 
