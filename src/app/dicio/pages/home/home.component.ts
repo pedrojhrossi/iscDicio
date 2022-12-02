@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     debug: true,
     variant: 'only_text',
     mode: 'prod',
-    custom_process: 'https://app.proddicio.net',
+    custom_process: 'https://qmatic.qadicio.net',
     text: 'Nuevo Cliente',
   };
 
