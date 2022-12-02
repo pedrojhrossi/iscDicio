@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/qmatic-calendar-app13'),
+      dir: require('path').join(__dirname, './coverage/qm-dicio'),
       subdir: '.',
       reporters: [
         { type: 'html' },

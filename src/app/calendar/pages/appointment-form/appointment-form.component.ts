@@ -19,7 +19,10 @@ import { Router } from '@angular/router';
 export class AppointmentFormComponent implements OnInit {
   calendarForm: FormGroup = this.fb.group({
     branch: ['', Validators.required],
-    service: ['', Validators.required],
+    service: [
+      'b1b90d5c7eb609bfa0eb2c75688e7e500f6115ea1558d767f2c7dcfec60c7aa7',
+      Validators.required,
+    ],
     date: ['', Validators.required],
     time: ['', Validators.required],
     notes: [''],
@@ -45,6 +48,19 @@ export class AppointmentFormComponent implements OnInit {
     externalId: '',
     publicId: null,
   };
+  newService: Service = {
+    id: 0,
+    qpId: 0,
+    name: '',
+    active: false,
+    duration: 0,
+    additionalCustomerDuration: 0,
+    publicId: '',
+    publicEnabled: false,
+    created: 0,
+    updated: 0,
+    custom: null,
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -57,11 +73,13 @@ export class AppointmentFormComponent implements OnInit {
       !this.calendarService.cliente.externalId ||
       this.calendarService.cliente.externalId === ''
     ) {
-      this.router.navigate(['/dicioHome/home']);
+      this.router.navigate(['/iscCalendar/services']);
       return;
     }
     this.calendarService
-      .getUserByExternalId(this.calendarService.cliente.externalId || '')
+      .getUserByExternalId(
+        this.calendarService.cliente.externalId || ''
+      )
       .subscribe((resp) => {
         this.cliente = resp?.customerList[0] || {
           firstName: this.calendarService.cliente.firstName,
@@ -110,7 +128,18 @@ export class AppointmentFormComponent implements OnInit {
         )
       )
       .subscribe((servicesList) => {
-        this.servicios = servicesList.serviceList;
+        //* Servicio Fijo.
+
+        for (let index = 0; index < servicesList.serviceList.length; index++) {
+          if (
+            servicesList.serviceList[index].publicId ==
+            'b1b90d5c7eb609bfa0eb2c75688e7e500f6115ea1558d767f2c7dcfec60c7aa7'
+          ) {
+            this.newService = servicesList.serviceList[index];
+          }
+        }
+        this.servicios.push(this.newService);
+        this.calendarForm.get('service')?.setValue(this.newService.publicId) //* Setea el valor del servicio 1
       });
 
     //* Al cambiar el servicio
@@ -187,9 +216,8 @@ export class AppointmentFormComponent implements OnInit {
                     '/iscCalendar/confirmacion',
                     citaCreada?.publicId,
                   ]);
-                this.calendarForm.reset();
+                  this.calendarForm.reset();
                 }, 1000);
-
               } else {
                 alert('OCURRIO UN ERROR AL INTENTAR GENERAR LA CITA');
               }

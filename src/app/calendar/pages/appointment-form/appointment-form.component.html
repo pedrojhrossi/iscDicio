@@ -1,6 +1,21 @@
 <form [formGroup]="calendarForm">
   <div id="accordion">
     <div class="card">
+      <div class="card-header bg-success" id="headingTwo">
+        <h5 class="mb-0">
+          <button
+            class="btn text-white collapsed"
+            data-toggle="collapse"
+            data-target="#servicePanel"
+            aria-expanded="false"
+            aria-controls="servicePanel"
+          >
+            Servicio <b> Débito Azteca </b>
+          </button>
+        </h5>
+      </div>
+    </div>
+    <div class="card">
       <div class="card-header bg-success" id="headingOne">
         <h5 class="mb-0">
           <button
@@ -45,50 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-header bg-success" id="headingTwo">
-        <h5 class="mb-0">
-          <button
-            class="btn text-white collapsed"
-            data-toggle="collapse"
-            data-target="#servicePanel"
-            aria-expanded="false"
-            aria-controls="servicePanel"
-          >
-            Seleccionar Servicio
-          </button>
-        </h5>
-      </div>
-      <div
-        id="servicePanel"
-        class="collapse"
-        aria-labelledby="headingTwo"
-        data-parent="#accordion"
-      >
-        <div class="card-body">
-          <!-- Service -->
-          <ul class="list-group">
-            <li
-              *ngFor="let service of servicios; let i = index"
-              class="list-group-item"
-            >
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  formControlName="service"
-                  [value]="service.publicId"
-                  id="service_{{ i }}"
-                />
-                <label class="form-check-label" for="service_{{ i }}">
-                  {{ service.name }}
-                </label>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
     <div class="card">
       <div class="card-header bg-success" id="headingThree">
         <h5 class="mb-0">
